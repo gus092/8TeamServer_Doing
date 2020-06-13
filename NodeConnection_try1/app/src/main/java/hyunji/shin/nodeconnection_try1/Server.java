@@ -18,16 +18,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 public class Server {
+    static String DBresult;
     Context context;
 
     public Server(Context context) {
         this.context = context;
     }
-//
-//    public static Context getContext() {
-//        return context;
-//    }
 
     public static class JSONTask1 extends AsyncTask<String, String, String> {
 
@@ -179,10 +177,10 @@ public class Server {
     */
     public static class Show_alarmList extends AsyncTask<String, String, String>{
 
-        String userName;
+        String alarm_user_code;
 
-        public Show_alarmList(String userName) {
-            this.userName = userName;
+        public Show_alarmList(String alarm_user_code) {
+            this.alarm_user_code = alarm_user_code;
         }
         @Override
         protected String doInBackground(String... urls) {
@@ -190,7 +188,7 @@ public class Server {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
                 JSONObject jsonObject = new JSONObject();
 
-                jsonObject.accumulate("alarm_user_code", "d"); //(2)찾으려는 요소 넣기
+                jsonObject.accumulate("alarm_user_code", alarm_user_code); //(2):찾으려는 요소 넣기
 
 
                 HttpURLConnection con = null;
@@ -259,21 +257,18 @@ public class Server {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result!=null){
-                Log.e("SELECT??", result);
-            }
             Toast.makeText(MainActivity.getAppContext(), result, Toast.LENGTH_SHORT).show();
-            //tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부
+            DBAnswer(result);
         }
     }
 
     public static class Update_alarmList extends AsyncTask<String, String, String>{
-        String user_code;
+        String alarm_user_code;
         String time;
         String day;
 
-        public Update_alarmList(String user_code,String time, String day) {
-            this.user_code = user_code;
+        public Update_alarmList(String alarm_user_code,String time, String day) {
+            this.alarm_user_code = alarm_user_code;
             this.time = time ;
             this.day = day;
         }
@@ -286,7 +281,7 @@ public class Server {
 
                 jsonObject.accumulate("time", time);
                 jsonObject.accumulate("day", day);
-                jsonObject.accumulate("alarm_user_code", user_code); //(2)찾으려는 요소 넣기
+                jsonObject.accumulate("alarm_user_code", alarm_user_code); //(2)찾으려는 요소 넣기
 
 
 
@@ -358,7 +353,7 @@ public class Server {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //tvData.setText(result);//서버로 부터 받은 값을 출력해주는 부분
-            Toast.makeText(MainActivity.getAppContext(),"알람 리스트가 새로 업데이트 되었습니다.",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.getAppContext(), time+"시 "+day+"요일 알람이 새로 업데이트 되었습니다.",Toast.LENGTH_LONG).show();
         }
     } //완성
 
@@ -444,6 +439,13 @@ public class Server {
             Log.e("HII","HHHHHHHERE");
             //
         }
+    }
+
+    public static void DBAnswer (String result){
+        DBresult = result;
+    }
+    public static String getResultFromDB(){
+        return  DBresult;
     }
 
 }

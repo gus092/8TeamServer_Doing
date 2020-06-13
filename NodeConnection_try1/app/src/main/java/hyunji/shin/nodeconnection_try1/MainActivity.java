@@ -23,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tvData;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new Server.Show_alarmList("b").execute("http://192.168.35.25:3306/post" ); //(1)이벤트 발생후 호출
+                tvData.setText( Server.getResultFromDB() );
             }
         });
 
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     public static Context getAppContext() {
         return MainActivity.context;
     }
+
 
 
 //    public class JSONTask1 extends AsyncTask<String, String, String> {

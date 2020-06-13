@@ -44,15 +44,15 @@ app.post('/post', (req, res) => {
 
    req.on('end', () => {
      console.log("user_id : "+inputData.alarm_user_code);
-    var query = "SELECT * FROM edmstsearch.alarm_list WHERE name LIKE '%"+inputData.alarm_user_code+"%'";
+    var query = "SELECT time,day FROM alarm_list WHERE alarm_user_code LIKE '%"+inputData.alarm_user_code+"%'";
     console.log("query :"+query);
-
      con.query(query,function(error,result,fields){
        con.on('error',function(err){
          console.log('[MYSQL]ERROR',err);
        });
       // if(result && result.length){
          res.end(JSON.stringify(result));
+         console.log("RESULT : "+ result);
     //    }else{
     //      res.end(JSON.stringify('NO person here'));
       //  }
