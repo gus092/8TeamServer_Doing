@@ -2,6 +2,7 @@ package hyunji.shin.nodeconnection_try1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvData;
     private  static Context context;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,26 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.context = getApplicationContext();
 
-
-
         tvData = (TextView) findViewById(R.id.textview);
 
         Button btn_all = (Button) findViewById(R.id.btn_all);
         Button btn_post = (Button) findViewById(R.id.btn_post);
         Button btn_insert = (Button) findViewById(R.id.btn_insert);
         Button btn_update = (Button) findViewById(R.id.btn_update);
-
         btn_all.setOnClickListener(new View.OnClickListener() { //GET ALL버튼을 누르면
                                        @Override
                                        public void onClick(View view) {
                                            new Server.JSONTask1().execute("http://192.168.35.25:3306/person");
+                                           tvData.setText( Server.getResultFromDB());
                                        }
                                    }
         );
         btn_post.setOnClickListener(new View.OnClickListener() { //POST버튼을 누르면
             @Override
             public void onClick(View view) {
-                new Server.Show_alarmList("b").execute("http://192.168.35.25:3306/post" ); //(1)이벤트 발생후 호출
+                new Server.Show_alarmList("b").execute("http://192.168.35.25:3306/post"); //(1)이벤트 발생후 호출
                 tvData.setText( Server.getResultFromDB() );
             }
         });

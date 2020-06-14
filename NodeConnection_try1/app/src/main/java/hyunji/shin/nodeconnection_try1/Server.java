@@ -43,7 +43,7 @@ public class Server {
                 try {
                     URL url = new URL(urls[0]);
                     con = (HttpURLConnection) url.openConnection();
-                    con.connect();
+                 //   con.connect();
 
                     //입력 스트림 생성
                     InputStream stream = con.getInputStream();
@@ -96,8 +96,8 @@ public class Server {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.e("HII","HHHHHHHERE");
-            //tvData.setText(result);
+            DBAnswer(result);
+            // tvData.setText(result);
         }
 
     }
@@ -183,6 +183,14 @@ public class Server {
             this.alarm_user_code = alarm_user_code;
         }
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //progress bar를 보여주는 등등의 행위
+        }
+//        protected void onPreExecute() {
+//            Log.e("HERE...","OnPREEXECUTE");
+//        }
+        @Override
         protected String doInBackground(String... urls) {
             try {
                 //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
@@ -198,6 +206,7 @@ public class Server {
                     URL url = new URL(urls[0]);
                     //연결을 함
                     con = (HttpURLConnection) url.openConnection();
+
 
                     con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");//application JSON 형식으로 전송
                     con.setRequestMethod("POST");//POST방식으로 보냄
