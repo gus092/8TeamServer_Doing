@@ -53,6 +53,7 @@ app.post('/post', (req, res) => {
        });
       // if(result && result.length){
          res.end(JSON.stringify(result));
+
          console.log("RESULT : "+ result);
     //    }else{
     //      res.end(JSON.stringify('NO person here'));
