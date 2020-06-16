@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         btn_all.setOnClickListener(new View.OnClickListener() { //GET ALL버튼을 누르면
                                        @Override
                                        public void onClick(View view) {
-                                           new Server.JSONTask1().execute("http://192.168.35.25:3306/person");
+                                           new Server.JSONTask1().execute("http://192.168.23.164:3306/person");
                                            tvData.setText( Server.getResultFromDB());
                                        }
                                    }
@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         btn_post.setOnClickListener(new View.OnClickListener() { //POST버튼을 누르면
             @Override
             public void onClick(View view) {
-                new Server.Show_alarmList("b").execute("http://192.168.35.25:3306/post"); //(1)이벤트 발생후 호출
+                String id ;
+                id = "a";
+                new Server.Show_alarmList("b").execute("http://192.168.23.164:3306/post"); //(1)이벤트 발생후 호출
                 tvData.setText( Server.getResultFromDB() );
             }
         });
@@ -63,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         btn_insert.setOnClickListener(new View.OnClickListener() { //insert DB 버튼을 누르면
             @Override
             public void onClick(View view) {
-                new Server.Update_alarmList("b","time","day").execute("http://192.168.35.25:3306/insert"); //(1)이벤트 발생후 호출
+                new Server.Update_alarmList("b","time","day").execute("http://192.168.23.164:3306/insert"); //(1)이벤트 발생후 호출
             }
         });
 
         btn_update.setOnClickListener(new View.OnClickListener() { //insert DB 버튼을 누르면
             @Override
             public void onClick(View view) {
-                new Server.JSONTask4().execute("http://192.168.35.25:3306/update" ); //(1)이벤트 발생후 호출
+                new Server.JSONTask4().execute("http://192.168.23.164:3306/update" ); //(1)이벤트 발생후 호출
             }
         });
 

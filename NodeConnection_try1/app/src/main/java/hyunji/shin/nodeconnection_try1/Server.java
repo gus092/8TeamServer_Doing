@@ -189,7 +189,6 @@ public class Server {
         }
 //        protected void onPreExecute() {
 //            Log.e("HERE...","OnPREEXECUTE");
-//        }
         @Override
         protected String doInBackground(String... urls) {
             try {

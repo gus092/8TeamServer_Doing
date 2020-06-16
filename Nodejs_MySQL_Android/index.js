@@ -18,8 +18,9 @@ app.use(bodyParser.json());
 //Get All PERSON from database
 app.get("/person",(req,res,next)=>{
   console.log("/person 진입");
-  var query = "SELECT * FROM edmstsearch.record_time LEFT JOIN person ON edmstsearch.record_time.time_user = edmstsearch.person.name";
-  //con.query('SELECT * FROM record_time',function(error,result,fields){ //이건 관계형 데이터 없이 전부 가져오기
+  //관계형 데이터 쓴 것
+  var query = "SELECT * FROM edmstsearch.record LEFT JOIN person ON edmstsearch.record.user_name = edmstsearch.person.name";
+  //con.query('SELECT * FROM alarm_list',function(error,result,fields){ //이건 관계형 데이터 없이 전부 가져오기
   con.query(query,function(error,result,fields){
     con.on('error',function(err){
       console.log('[MYSQL]ERROR',err);
