@@ -45,7 +45,7 @@ app.post('/post', (req, res) => {
 
    req.on('end', () => {
      console.log("user_id : "+inputData.alarm_user_code);
-    var query = "SELECT time,day FROM alarm_list WHERE alarm_user_code LIKE '%"+inputData.alarm_user_code+"%'";
+    var query = "SELECT alarm_name,day FROM alarm_list_name WHERE alarm_user_code LIKE '%"+inputData.alarm_user_code+"%'";
     console.log("query :"+query);
      con.query(query,function(error,result,fields){
        con.on('error',function(err){
@@ -91,7 +91,7 @@ app.post('/insert',(req,res)=>{
     console.log("name : "+inputData.alarm_user_code + " , time : "+inputData.time+ " , day : "+inputData.day);
     //var insertParams = [inputData.name,inputData.address,inputData.email,inputData.phone];
     // var query = 'INSERT INTO person (name,address,email,phone) VALUES (?,?,?,?)';
-    var query = 'INSERT INTO alarm_list SET ? ';
+    var query = 'INSERT INTO alarm_list_name SET ? ';
     con.query(query,inputData,function(err,fields){
       if(err){
         console.log(err);

@@ -1,5 +1,7 @@
 package hyunji.shin.nodeconnection_try1;
 
+//사용시 SERVER IP바꾸고 사용하기
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -403,11 +405,13 @@ public class Server {
         String alarm_user_code;
         String time;
         String day;
+        String alarm_name;
 
-        public Update_alarmList(String alarm_user_code,String time, String day) {
+        public Update_alarmList(String alarm_user_code,String time, String day,String alarm_name) {
             this.alarm_user_code = alarm_user_code;
             this.time = time ;
             this.day = day;
+            this.alarm_name = alarm_name;
         }
 
         @Override
@@ -419,6 +423,8 @@ public class Server {
                 jsonObject.accumulate("time", time);
                 jsonObject.accumulate("day", day);
                 jsonObject.accumulate("alarm_user_code", alarm_user_code); //(2)찾으려는 요소 넣기
+                jsonObject.accumulate("alarm_name", alarm_name);
+
 
 
 

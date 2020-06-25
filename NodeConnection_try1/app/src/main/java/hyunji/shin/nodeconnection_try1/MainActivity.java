@@ -1,3 +1,4 @@
+//서버 IP바꾸고 사용하기!
 package hyunji.shin.nodeconnection_try1;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         btn_insert.setOnClickListener(new View.OnClickListener() { //insert DB 버튼을 누르면
             @Override
             public void onClick(View view) {
-                new Server.Update_alarmList("b","월","day").execute("http://192.168.35.25:3306/insert"); //(1)이벤트 발생후 호출
+                new Server.Update_alarmList("b","월","day","점심약").execute("http://192.168.35.25:3306/insert"); //(1)이벤트 발생후 호출
             }
         });
 
